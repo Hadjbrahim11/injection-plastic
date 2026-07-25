@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIMANE HADJ BRAHIM | Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #007bc4;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --accent-color: #e67e22;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher-bar {
+            background-color: #1a252f;
+            padding: 12px 20px;
+            text-align: left;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        body[dir="rtl"] .lang-switcher-bar {
+            justify-content: flex-start;
+        }
+
+        .lang-switcher-bar select {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--primary-color);
+            background: white;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: inline-flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            font-size: 1.3rem;
+        }
+
+        .card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-right: 18px;
+        }
+        body[dir="ltr"] .card ul li {
+            padding-right: 0;
+            padding-left: 18px;
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+            position: absolute;
+            right: 0;
+            top: -2px;
+        }
+        body[dir="ltr"] .card ul li::before {
+            right: auto;
+            left: 0;
+        }
+
+        .gallery-title {
+            margin: 40px 0 20px;
+            text-align: center;
+            color: var(--dark-color);
+            font-size: 2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            background-color: #eaeaea;
+        }
+
+        .gallery-item .caption {
+            padding: 15px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--dark-color);
+            border-top: 1px solid #eee;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            background-color: var(--dark-color);
+            color: white;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switcher-bar">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="ar">العربية (AR)</option>
+            <option value="fr">Français (FR)</option>
+            <option value="en">English (EN)</option>
+            <option value="zh">中文 (ZH)</option>
+        </select>
+    </div>
+
+    <header>
+        <h1 id="userName">SLIMANE HADJ BRAHIM</h1>
+        <p id="userTitle">مهندس / فني حقن بلاستيك وبرمجة الروبوتات</p>
+        <div class="contact-info">
+            <span id="lblPhone">الهاتف:</span> 
+            <a href="tel:+213799146763" dir="ltr">+213 799 14 67 63</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="info-grid">
+            <div class="card">
+                <h3 id="cardPersonalTitle">البيانات الشخصية</h3>
+                <ul>
+                    <li><strong id="lblCountry">الدولة:</strong> <span id="valCountry">الجزائر</span></li>
+                    <li><strong id="lblCity">المدينة / البلدية:</strong> <span id="valCity">غرداية / العطف</span></li>
+                    <li><strong id="lblAge">العمر:</strong> <span id="valAge">26 سنة (مواليد 06 نوفمبر 2000)</span></li>
+                    <li><strong id="lblStartYear">بداية المسيرة المهنية:</strong> <span id="valStartYear">2023</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 id="cardExperienceTitle">الخبرات والمهارات الفنية (3 سنوات خبرة)</h3>
+                <ul>
+                    <li id="exp1">برمجة وإعداد آلات حقن البلاستيك.</li>
+                    <li id="exp2">برمجة الروبوتات الصناعية الملحقة بالآلات.</li>
+                    <li id="exp3">تركيب القوالب وتغيير قطع القوالب وصيانتها.</li>
+                    <li id="exp4">استكشاف أخطاء التشغيل وحل مشاكل جودة المنتج.</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="border: 0; height: 1px; background: #ddd; margin: 40px 0;">
+
+        <h2 class="gallery-title" id="galleryTitle">معرض الأعمال والمنتجات</h2>
+        <div class="gallery" id="imageGallery">
+            
+            <!-- تم وضع الصورة الأولى هنا برابط مباشر من المجلد للتغلب على حظر الهاتف الاستباقي -->
+            <div class="gallery-item">
+                <img src="./assets/img1.jpg" alt="SLIMANE HADJ BRAHIM - Work 1" onerror="this.src='assets/img1.jpg';">
+                <div class="caption" id="defaultCaption">منتج / قالب رقم 1</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p id="footerText">جميع الحقوق محفوظة © SLIMANE HADJ BRAHIM - 2026</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ar: {
+                dir: "rtl",
+                title: "مهندس / فني حقن بلاستيك وبرمجة الروبوتات",
+                phone: "الهاتف:",
+                cardPersonal: "البيانات الشخصية",
+                country: "الدولة:",
+                countryVal: "الجزائر",
+                city: "المدينة / البلدية:",
+                cityVal: "غرداية / العطف",
+                age: "العمر:",
+                ageVal: "26 سنة (مواليد 06 نوفمبر 2000)",
+                startYear: "بداية العمل:",
+                startYearVal: "2023",
+                cardExperience: "الخبرات والمهارات الفنية (3 سنوات خبرة)",
+                exp1: "برمجة وإعداد آلات حقن البلاستيك.",
+                exp2: "برمجة الروبوتات الصناعية الملحقة بالآلات.",
+                exp3: "تركيب القوالب وتغيير قطع القوالب وصيانتها.",
+                exp4: "استكشاف أخطاء التشغيل وحل مشاكل جودة المنتج.",
+                galleryTitle: "معرض الأعمال والمنتجات",
+                captionText: "منتج / قالب رقم ",
+                footer: "جميع الحقوق محفوظة © SLIMANE HADJ BRAHIM - 2026"
+            },
+            fr: {
+                dir: "ltr",
+                title: "Ingénieur / Technicien en Injection Plastique & Robotique",
+                phone: "Tél:",
+                cardPersonal: "Informations Personnelles",
+                country: "Pays:",
+                countryVal: "Algérie",
+                city: "Ville / Commune:",
+                cityVal: "Ghardaïa / El Atteuf",
+                age: "Âge:",
+                ageVal: "26 ans (Né le 06 Novembre 2000)",
+                startYear: "Début de carrière:",
+                startYearVal: "2023",
+                cardExperience: "Compétences Techniques (3 ans d'expérience)",
+                exp1: "Programmation et réglage des machines d'injection plastique.",
+                exp2: "Programmation des robots industriels intégrés.",
+                exp3: "Montage des moules et changement des pièces de moules.",
+                exp4: "Dépannage et résolution des défauts de production.",
+                galleryTitle: "Galerie de Travaux et Produits",
+                captionText: "Produit / Moule N° ",
+                footer: "Tous droits réservés © SLIMANE HADJ BRAHIM - 2026"
+            },
+            en: {
+                dir: "ltr",
+                title: "Plastic Injection & Robot Programming Engineer / Technician",
+                phone: "Phone:",
+                cardPersonal: "Personal Information",
+                country: "Country:",
+                countryVal: "Algeria",
+                city: "City / Municipality:",
+                cityVal: "Ghardaia / El Atteuf",
+                age: "Age:",
+                ageVal: "26 years old (Born November 6, 2000)",
+                startYear: "Started Career:",
+                startYearVal: "2023",
+                cardExperience: "Technical Expertise (3 Years Experience)",
+                exp1: "Programming and setting up plastic injection molding machines.",
+                exp2: "Programming attached industrial robots.",
+                exp3: "Mold installation, changing mold components and maintenance.",
+                exp4: "Troubleshooting production process and solving product defects.",
+                galleryTitle: "Work & Products Gallery",
+                captionText: "Product / Mold No. ",
+                footer: "All Rights Reserved © SLIMANE HADJ BRAHIM - 2026"
+            },
+            zh: {
+                dir: "ltr",
+                title: "塑料注塑与机器人编程工程师 / 技术员",
+                phone: "电话:",
+                cardPersonal: "个人信息",
+                country: "国家:",
+                countryVal: "阿尔及利亚",
+                city: "城市 / 市镇:",
+                cityVal: "盖尔达耶 / 埃尔阿特夫",
+                age: "年龄:",
+                ageVal: "26岁 (2000年11月6日出生)",
+                startYear: "开始工作年份:",
+                startYearVal: "2023年",
+                cardExperience: "技术专长 (3年工作经验)",
+                exp1: "塑料注塑成型机的编程与调试。",
+                exp2: "工业机械手及机器人的程序编写。",
+                exp3: "模具安装、模具零件更换与日常维护。",
+                exp4: "生产制程排卡与解决产品质量缺陷故障。",
+                galleryTitle: "工作与产品展厅",
+                captionText: "产品 / 模具 编号 ",
+                footer: "版权所有 © SLIMANE HADJ BRAHIM - 2026"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const data = translations[lang];
+            
+            document.documentElement.lang = lang;
+            document.body.setAttribute('dir', data.dir);
+
+            document.getElementById('userTitle').innerText = data.title;
+            document.getElementById('lblPhone').innerText = data.phone;
+            document.getElementById('cardPersonalTitle').innerText = data.cardPersonal;
+            document.getElementById('lblCountry').innerText = data.country;
+            document.getElementById('valCountry').innerText = data.countryVal;
+            document.getElementById('lblCity').innerText = data.city;
+            document.getElementById('valCity').innerText = data.cityVal;
+            document.getElementById('lblAge').innerText = data.age;
+            document.getElementById('valAge').innerText = data.ageVal;
+            document.getElementById('lblStartYear').innerText = data.startYear;
+            document.getElementById('valStartYear').innerText = data.startYearVal;
+            document.getElementById('cardExperienceTitle').innerText = data.cardExperience;
+            document.getElementById('exp1').innerText = data.exp1;
+            document.getElementById('exp2').innerText = data.exp2;
+            document.getElementById('exp3').innerText = data.exp3;
+            document.getElementById('exp4').innerText = data.exp4;
+            document.getElementById('galleryTitle').innerText = data.galleryTitle;
+            document.getElementById('footerText').innerText = data.footer;
+
+            document.getElementById('defaultCaption').innerText = `${data.captionText}1`;
+
+            const captions = document.querySelectorAll('.gallery-item .caption');
+            captions.forEach((caption, index) => {
+                caption.innerText = `${data.captionText}${index + 1}`;
+            });
+        }
+
+        // توليد باقي الصور ديناميكياً (من 2 إلى 50)
+        const totalImages = 50; 
+        const galleryContainer = document.getElementById('imageGallery');
+        const extensions = ['jpg', 'png', 'jpeg', 'webp', 'JPG', 'PNG', 'JPEG'];
+
+        for (let i = 2; i <= totalImages; i++) {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+
+            const img = document.createElement('img');
+            img.alt = `SLIMANE HADJ BRAHIM - Work ${i}`;
+            
+            let extIndex = 0;
+            
+            function tryLoadImage() {
+                if (extIndex < extensions.length) {
+                    img.src = `./assets/img${i}.${extensions[extIndex]}`;
+                    extIndex++;
+                } else {
+                    item.style.display = 'none'; 
+                }
+            }
+
+            img.onerror = function() {
+                // محاولة إضافية بدون النقاط للمسار البديل
+                img.src = `assets/img${i}.${extensions[extIndex-1]}`;
+                img.onerror = tryLoadImage;
+            };
+            
+            tryLoadImage();
+
+            const caption = document.createElement('div');
+            caption.className = 'caption';
+            caption.innerText = `${translations.ar.captionText}${i}`;
+
+            item.appendChild(img);
+            item.appendChild(caption);
+            galleryContainer.appendChild(item);
+        }
+
+        changeLanguage('ar');
+    </script>
+
+</body>
+</html>
